@@ -63,6 +63,7 @@ module Jpmobile
       str
     end
 
+    # NKF対応
     def utf8_to_sjis(utf8_str)
       if !utf8_str.respond_to?(:encode)
         utf8_str.encode("Shift_JIS", :crlf_newline => true)
@@ -71,6 +72,7 @@ module Jpmobile
       end
     end
 
+    # NKF対応
     def sjis_to_utf8(sjis_str)
       if !sjis_str.respond_to?(:encode)
         sjis_str.encode("UTF-8", :universal_newline => true)
