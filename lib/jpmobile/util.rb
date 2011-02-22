@@ -42,11 +42,15 @@ module Jpmobile
       new_obj
     end
 
+    # encodeに失敗しているっぽい
     def sjis(ascii_8bit)
+=begin
       if ascii_8bit.respond_to?(:force_encoding)
         ascii_8bit.force_encoding("Shift_JIS")
       end
       ascii_8bit
+=end
+      NKF.nkf("-m0 -x -Ws", ascii_8bit).gsub(/\n/, "\r\n")
     end
 
     def utf8(ascii_8bit)
