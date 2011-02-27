@@ -80,6 +80,7 @@ module Jpmobile::Mobile
 
     # 文字コード変換
     def to_internal(str)
+      str = Jpmobile::Util.sjis_to_utf8(str)
       # 絵文字を数値参照に変換
       str = Jpmobile::Emoticon.external_to_unicodecr_au(Jpmobile::Util.sjis(str))
       # 文字コードを UTF-8 に変換
