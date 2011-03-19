@@ -70,11 +70,14 @@ module Jpmobile::Mobile
 
     # 文字コード変換
     def to_internal(str)
-      # 文字コードを UTF-8 に変換
-      str = Jpmobile::Util.sjis_to_utf8(str)
-      # 絵文字を数値参照に変換
-      # なんか邪魔する・・・
-      #str = Jpmobile::Emoticon.external_to_unicodecr_docomo(Jpmobile::Util.sjis(str))
+      # primeシリーズがUTF-8になる
+      if Kconv.guess(str) == Kconv::UTF8
+        # 絵文字を数値参照に変換
+        str = Jpmobile::Emoticon.external_to_unicodecr_docomo(Jpmobile::Util.sjis(str))
+        str = Jpmobile::Util.sjis_to_utf8(str)
+      else
+        str = Jpmobile::Util.sjis_to_utf8(str)
+      end
       # 数値参照を UTF-8 に変換
       Jpmobile::Emoticon.unicodecr_to_utf8(str)
     end
