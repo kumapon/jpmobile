@@ -15,5 +15,5 @@ module ActionController
   end
 end
 
-ActionController::Request.send :include, Jpmobile::Encoding
+ActionController::Request.send :include, Jpmobile::Encoding if defined?(ActionController::Request)
 ActionView::LookupContext.register_detail(:mobile) {nil}
